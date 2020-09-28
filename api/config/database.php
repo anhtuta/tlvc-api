@@ -10,9 +10,9 @@ class Database
   private $password = "5555";
 
   // product
-  // private $db_name = "class236_ddyy";
-  // private $username = "class236_att";
-  // private $password = "tuzaku95";
+  // private $db_name = "xuongduc_ddyy";
+  // private $username = "xuongduc_tuzaku";
+  // private $password = "tzk@att1995";
 
   public $conn;
 
