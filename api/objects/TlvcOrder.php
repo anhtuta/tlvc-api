@@ -1,9 +1,13 @@
 <?php
+
+// Ban đầu bảng này tên là tlvc_order, nhưng sau đó có thêm cột để lưu cả lục bình order nữa
+// Vậy nên mới đổi tên bảng thành landing_page_order, nhưng object cứ giữ nguyên,
+// do ko muốn sửa nhiều chỗ
 class TlvcOrder
 {
   // database connection and table name
   private $conn;
-  private $table_name = "tlvc_order";
+  private $table_name = "landing_page_order";
 
   // object properties
   public $id;
@@ -11,6 +15,7 @@ class TlvcOrder
   public $phone;
   public $address;
   public $order_date;
+  public $product;
   public $message;
   public $status;
   public $idList;
@@ -21,16 +26,13 @@ class TlvcOrder
     $this->conn = $conn;
   }
 
-  function read()
+  function read($page, $size, $sortBy, $sortOrder)
   {
-    $page = isset($_GET['page']) ? $_GET['page'] : 0;
-    $size = isset($_GET['size']) ? $_GET['size'] : 10;
     $offset = $page * $size;
     $query = "SELECT * FROM " .
       $this->table_name .
-      " ORDER BY order_date DESC" .
+      " ORDER BY " . $sortBy . " " . $sortOrder .
       " LIMIT " . $size . " OFFSET " . $offset;
-
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
 
@@ -39,7 +41,7 @@ class TlvcOrder
 
   function countTotal()
   {
-    $query = "SELECT COUNT(*) AS totalCount FROM tlvc_order";
+    $query = "SELECT COUNT(*) AS totalCount FROM " . $this->table_name;
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
@@ -112,7 +114,7 @@ class TlvcOrder
 
     return false;
   }
-  
+
   function updateStatus()
   {
     $this->status = htmlspecialchars(strip_tags($this->status));
@@ -122,7 +124,7 @@ class TlvcOrder
       " SET " .
       "status = :status " .
       "WHERE " .
-      "id IN (" . $this->idList . ")" ;
+      "id IN (" . $this->idList . ")";
 
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':status', $this->status);
