@@ -51,13 +51,14 @@ class TlvcOrder
   {
     $query = "INSERT INTO " . $this->table_name . "
           SET name=:name, phone=:phone, address=:address, " .
-      "order_date=:order_date, message=:message, status=:status";
+      "order_date=:order_date, product=:product, message=:message, status=:status";
     $stmt = $this->conn->prepare($query);
 
     $this->name = htmlspecialchars(strip_tags($this->name));
     $this->phone = htmlspecialchars(strip_tags($this->phone));
     $this->address = htmlspecialchars(strip_tags($this->address));
     $this->order_date = htmlspecialchars(strip_tags($this->order_date));
+    $this->product = htmlspecialchars(strip_tags($this->product));
     $this->message = htmlspecialchars(strip_tags($this->message));
     $this->status = htmlspecialchars(strip_tags($this->status));
 
@@ -66,6 +67,7 @@ class TlvcOrder
     $stmt->bindParam(":phone", $this->phone);
     $stmt->bindParam(":address", $this->address);
     $stmt->bindParam(":order_date", $this->order_date);
+    $stmt->bindParam(":product", $this->product);
     $stmt->bindParam(":message", $this->message);
     $stmt->bindParam(":status", $this->status);
 
@@ -84,6 +86,7 @@ class TlvcOrder
       "phone = :phone, " .
       "address = :address, " .
       "order_date = :order_date, " .
+      "product = :product, " .
       "message = :message, " .
       "status = :status " .
       "WHERE " .
@@ -95,6 +98,7 @@ class TlvcOrder
     $this->phone = htmlspecialchars(strip_tags($this->phone));
     $this->address = htmlspecialchars(strip_tags($this->address));
     $this->order_date = htmlspecialchars(strip_tags($this->order_date));
+    $this->product = htmlspecialchars(strip_tags($this->product));
     $this->message = htmlspecialchars(strip_tags($this->message));
     $this->status = htmlspecialchars(strip_tags($this->status));
     $this->id = htmlspecialchars(strip_tags($this->id));
@@ -104,6 +108,7 @@ class TlvcOrder
     $stmt->bindParam(':phone', $this->phone);
     $stmt->bindParam(':address', $this->address);
     $stmt->bindParam(':order_date', $this->order_date);
+    $stmt->bindParam(':product', $this->product);
     $stmt->bindParam(':message', $this->message);
     $stmt->bindParam(':status', $this->status);
     $stmt->bindParam(':id', $this->id);

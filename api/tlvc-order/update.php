@@ -27,6 +27,7 @@ $tlvc_order->name = $data->name;
 $tlvc_order->phone = $data->phone;
 $tlvc_order->address = $data->address;
 $tlvc_order->order_date = $data->order_date;
+$tlvc_order->product = $data->product;
 $tlvc_order->message = $data->message;
 $tlvc_order->status = $data->status;
 

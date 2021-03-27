@@ -25,6 +25,7 @@ $tlvc_order->name = !empty($data->name) ? $data->name : "";
 $tlvc_order->phone = !empty($data->name) ? $data->phone : "";
 $tlvc_order->address = !empty($data->address) ? $data->address : "";
 $tlvc_order->order_date = date('Y-m-d H:i:s');
+$tlvc_order->product = !empty($data->product) ? $data->product : "";
 $tlvc_order->message = !empty($data->message) ? $data->message : "";
 $tlvc_order->status = "CHƯA XỬ LÝ";
 
