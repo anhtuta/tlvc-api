@@ -35,12 +35,12 @@ $tlvc_order->status = $data->status;
 if ($tlvc_order->update()) {
   http_response_code(200);
   $res = Result::successRes("TlvcOrder was updated");
-  echo json_encode($res);
+  echo json_encode($res, JSON_UNESCAPED_UNICODE);
 }
 
 // if unable to update the tlvc_order, tell the user
 else {
   http_response_code(503);
   $res = Result::failRes("Unable to update tlvc_order");
-  echo json_encode($res);
+  echo json_encode($res, JSON_UNESCAPED_UNICODE);
 }

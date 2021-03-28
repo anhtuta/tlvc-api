@@ -14,11 +14,12 @@ $database = new Database();
 $conn = $database->getConnection();
 $page = isset($_GET['page']) ? $_GET['page'] : 0;
 $size = isset($_GET['size']) ? $_GET['size'] : 10;
+$product = isset($_GET['product']) ? $_GET['product'] : "%";
 $sortBy = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'id';
 $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'desc';
 
 $tlvc_order = new TlvcOrder($conn);
-$stmt = $tlvc_order->read($page, $size, $sortBy, $sortOrder);
+$stmt = $tlvc_order->read($page, $size, $product, $sortBy, $sortOrder);
 $stmt2 = $tlvc_order->countTotal();
 // $num = $stmt->rowCount();
 
@@ -62,4 +63,6 @@ http_response_code(200);
 
 // show tlvc_orders data in json format
 $res = Result::successRes($tlvc_order_arr);
-echo json_encode($res);
+echo json_encode($res, JSON_UNESCAPED_UNICODE, JSON_UNESCAPED_UNICODE);
+
+?>

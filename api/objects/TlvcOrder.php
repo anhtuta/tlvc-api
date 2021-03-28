@@ -26,11 +26,12 @@ class TlvcOrder
     $this->conn = $conn;
   }
 
-  function read($page, $size, $sortBy, $sortOrder)
+  function read($page, $size, $product, $sortBy, $sortOrder)
   {
     $offset = $page * $size;
     $query = "SELECT * FROM " .
       $this->table_name .
+      " WHERE product LIKE '" . $product . "' " .
       " ORDER BY " . $sortBy . " " . $sortOrder .
       " LIMIT " . $size . " OFFSET " . $offset;
     $stmt = $this->conn->prepare($query);

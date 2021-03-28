@@ -2,7 +2,7 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -33,12 +33,12 @@ $tlvc_order->status = "CHƯA XỬ LÝ";
 if ($tlvc_order->create()) {
     http_response_code(201);
     $res = Result::successRes("TlvcOrder was created");
-    echo json_encode($res);
+    echo json_encode($res, JSON_UNESCAPED_UNICODE);
 }
 
 // if unable to create the tlvc_order, tell the user
 else {
     http_response_code(503);
     $res = Result::failRes("Unable to create tlvc_order");
-    echo json_encode($res);
+    echo json_encode($res, JSON_UNESCAPED_UNICODE);
 }
