@@ -40,9 +40,9 @@ class TlvcOrder
     return $stmt;
   }
 
-  function countTotal()
+  function countTotal($product)
   {
-    $query = "SELECT COUNT(*) AS totalCount FROM " . $this->table_name;
+    $query = "SELECT COUNT(*) AS totalCount FROM " . $this->table_name . " WHERE product LIKE '" . $product . "'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;

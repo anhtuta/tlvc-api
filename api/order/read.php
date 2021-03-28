@@ -20,7 +20,7 @@ $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'desc';
 
 $tlvc_order = new TlvcOrder($conn);
 $stmt = $tlvc_order->read($page, $size, $product, $sortBy, $sortOrder);
-$stmt2 = $tlvc_order->countTotal();
+$stmt2 = $tlvc_order->countTotal($product);
 // $num = $stmt->rowCount();
 
 // tlvc_order array
